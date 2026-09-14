@@ -1,5 +1,8 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 import BackgroundEmptyImage from "@/app/assets/image/background-empty.jpg"
 
@@ -18,12 +21,26 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           />
       </div>
 
-      <Link href="/" className="absolute top-6 left-6 z-20 flex items-center gap-2 text-[#FFC31C] drop-shadow-[0_0_1px_#FFC31C] hover:opacity-80 transition-opacity">
-        <span className="text-2xl font-caldareth">&larr;</span>
-        <span className="text-sm font-medium [-webkit-text-stroke:1px_#FFC31C]">Back</span>
-      </Link>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const }}
+        className="absolute top-6 left-6 z-20"
+      >
+        <Link href="/" className="flex items-center gap-2 text-[#FFC31C] drop-shadow-[0_0_1px_#FFC31C] hover:opacity-80 transition-opacity">
+          <span className="text-2xl font-caldareth">&larr;</span>
+          <span className="text-sm font-medium [-webkit-text-stroke:1px_#FFC31C]">Back</span>
+        </Link>
+      </motion.div>
 
-      {children}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+        className="z-10 w-full flex justify-center"
+      >
+        {children}
+      </motion.div>
     </div>
   );
 }

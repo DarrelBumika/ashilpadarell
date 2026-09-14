@@ -1,3 +1,7 @@
+'use client'
+
+import { motion } from "motion/react";
+
 const experiences = [
   {
     role: "AI Research Intern",
@@ -25,13 +29,44 @@ const experiences = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+};
+
 export default function ExperiencesPage() {
   return (
-    <div className="max-w-2xl w-full z-10 text-[#FFC31C]">
-      <h1 className="text-5xl sm:text-7xl lg:text-8xl font-caldareth drop-shadow-[0_0_1px_#FFC31C]">Experiences</h1>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="max-w-2xl w-full text-[#FFC31C]"
+    >
+      <motion.h1
+        variants={itemVariants}
+        className="text-5xl sm:text-7xl lg:text-8xl font-caldareth drop-shadow-[0_0_1px_#FFC31C]"
+      >
+        Experiences
+      </motion.h1>
       <div className="mt-8 sm:mt-10 flex flex-col gap-6 sm:gap-8">
         {experiences.map((exp, index) => (
-          <div key={index} className="relative pl-6 border-l border-[#FFC31C]/30 drop-shadow-[0_0_1px_#FFC31C]">
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            className="relative pl-6 border-l border-[#FFC31C]/30 drop-shadow-[0_0_1px_#FFC31C]"
+          >
             <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#FFC31C]" />
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
               <h2 className="text-lg sm:text-xl font-caldareth">
@@ -47,9 +82,9 @@ export default function ExperiencesPage() {
             <p className="text-sm sm:text-base font-normal font-sans [-webkit-text-stroke:1px_#FFC31C] text-justify leading-relaxed">
               {exp.description}
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

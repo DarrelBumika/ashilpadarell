@@ -1,3 +1,7 @@
+'use client'
+
+import { motion } from "motion/react";
+
 const skillCategories = [
   {
     title: "Programming Languages",
@@ -17,29 +21,68 @@ const skillCategories = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+};
+
+const tagVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
+};
+
 export default function SkillsPage() {
   return (
-    <div className="max-w-3xl w-full z-10 text-[#FFC31C]">
-      <h1 className="text-5xl sm:text-7xl lg:text-8xl font-caldareth drop-shadow-[0_0_1px_#FFC31C]">Skills</h1>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="max-w-3xl w-full text-[#FFC31C]"
+    >
+      <motion.h1
+        variants={itemVariants}
+        className="text-5xl sm:text-7xl lg:text-8xl font-caldareth drop-shadow-[0_0_1px_#FFC31C]"
+      >
+        Skills
+      </motion.h1>
       <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
         {skillCategories.map((category) => (
-          <div key={category.title} className="drop-shadow-[0_0_1px_#FFC31C]">
+          <motion.div key={category.title} variants={itemVariants} className="drop-shadow-[0_0_1px_#FFC31C]">
             <h2 className="text-lg sm:text-xl font-caldareth mb-3 sm:mb-4">
               {category.title}
             </h2>
             <div className="flex flex-wrap gap-2">
               {category.skills.map((skill) => (
-                <span
+                <motion.span
                   key={skill}
+                  variants={tagVariants}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   className="text-sm sm:text-base font-medium font-sans [-webkit-text-stroke:1px_#FFC31C] px-3 py-1.5 border border-[#FFC31C]/40 rounded-sm bg-black/20"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }
