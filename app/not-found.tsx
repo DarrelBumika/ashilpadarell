@@ -1,7 +1,7 @@
 export default function NotFound() {
     return (
         <div className="w-full h-screen flex justify-center items-center">
-            <h1 className="text-8xl font-caldareth text-[#FFC31C]">Not Found!</h1>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-caldareth text-[#FFC31C]">Not Found!</h1>
         </div>
     )
 }

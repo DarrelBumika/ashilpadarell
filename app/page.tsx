@@ -19,12 +19,12 @@ export default function Home() {
         />
       </div>
 
-      <div className="flex flex-col items-center gap-8 z-10">
-        <div className="flex flex-col items-center gap-2.5">
-          <h1 className="font-caldareth text-8xl font-bold text-[#FFC31C] drop-shadow-[0_0_1px_#FFC31C]">Ashilpa Darrel Bumika</h1>
-          <p className="text-xl font-medium text-[#FFC31C] [-webkit-text-stroke:1px_#FFC31C] drop-shadow-[0_0_1px_#FFC31C]">a portfolio</p>
+      <div className="flex flex-col items-center gap-6 sm:gap-8 z-10 px-4">
+        <div className="flex flex-col items-center gap-2 sm:gap-2.5">
+          <h1 className="font-caldareth text-5xl sm:text-7xl lg:text-8xl font-bold text-[#FFC31C] drop-shadow-[0_0_1px_#FFC31C] text-center">Ashilpa Darrel Bumika</h1>
+          <p className="text-base sm:text-xl font-medium text-[#FFC31C] [-webkit-text-stroke:1px_#FFC31C] drop-shadow-[0_0_1px_#FFC31C]">a portfolio</p>
         </div>
-        <div className="flex items-center gap-32 p-2.5">
+        <div className="flex items-center p-2 sm:p-2.5">
           <Menus />
         </div>
       </div>
